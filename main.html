@@ -1,51 +1,44 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
 	<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>	
 	<script>
 		function secondHighest(arr) {
-			// Return "-Infinity" for edge cases as string to match test requirements
-			if (arr.length < 2) {
-				return "-Infinity";
-			}
+			//Write your code here
+			 if (arr.length < 2) {
+        return -Infinity; // Not enough elements for a second largest
+    }
 
-			let highest = -Infinity;
-			let secondHighest = -Infinity;
+    // Convert input to numbers and remove duplicates
+    let sortedArr = [...new Set(arr)].sort((a, b) => b - a);
 
-			for (let num of arr) {
-				// Ensure comparison with parsed numbers
-				num = parseFloat(num);
-				if (num > highest) {
-					secondHighest = highest;
-					highest = num;
-				} else if (num > secondHighest && num < highest) {
-					secondHighest = num;
-				}
-			}
-
-			return secondHighest === -Infinity ? "-Infinity" : secondHighest.toString();
+    // If there's a second largest distinct element, return it
+    if (sortedArr.length > 1) {
+        return sortedArr[1]; // Second largest element
+    } else {
+        return -Infinity; // No second distinct largest element
+    }	  	 
 		}
 
 		function Main() {
-			let n = parseInt(prompt("Enter the number of elements"), 10);
-
-			if (isNaN(n) || n <= 0) {
-				alert("-Infinity");
-				return;
+			var n = prompt("Enter the number of elements");
+			var arr = [];
+			for (var i = 0; i < n; i++) {
+				arr[i] = Number(prompt("Enter element " + (i+1)));
 			}
-
-			let arr = [];
-			for (let i = 0; i < n; i++) {
-				let value = prompt("Enter element " + (i + 1));
-				arr[i] = value;
-			}
-
 			alert(secondHighest(arr));
 		}
-
 		Main();
 	</script>
+
+    <script type="text/javascript" src="./script.js">
+</script>
+
 </body>
+
 </html>
